@@ -3,11 +3,11 @@
 // DO NOT EDIT!
 
 /*
-Package play is a reverse proxy.
+Package echopb is a reverse proxy.
 
 It translates gRPC into RESTful JSON APIs.
 */
-package play
+package echopb
 
 import (
 	"encoding/json"
@@ -29,8 +29,8 @@ var _ = runtime.String
 var _ = json.Marshal
 var _ = utilities.NewDoubleArray
 
-func request_YourService_Echo_0(ctx context.Context, client YourServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, error) {
-	var protoReq StringMessage
+func request_EchoService_Echo_0(ctx context.Context, client EchoServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, error) {
+	var protoReq EchoMessage
 
 	if err := json.NewDecoder(req.Body).Decode(&protoReq); err != nil {
 		return nil, grpc.Errorf(codes.InvalidArgument, "%v", err)
@@ -39,9 +39,9 @@ func request_YourService_Echo_0(ctx context.Context, client YourServiceClient, r
 	return client.Echo(ctx, &protoReq)
 }
 
-// RegisterYourServiceHandlerFromEndpoint is same as RegisterYourServiceHandler but
+// RegisterEchoServiceHandlerFromEndpoint is same as RegisterEchoServiceHandler but
 // automatically dials to "endpoint" and closes the connection when "ctx" gets done.
-func RegisterYourServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
+func RegisterEchoServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.ServeMux, endpoint string, opts []grpc.DialOption) (err error) {
 	conn, err := grpc.Dial(endpoint, opts...)
 	if err != nil {
 		return err
@@ -61,15 +61,15 @@ func RegisterYourServiceHandlerFromEndpoint(ctx context.Context, mux *runtime.Se
 		}()
 	}()
 
-	return RegisterYourServiceHandler(ctx, mux, conn)
+	return RegisterEchoServiceHandler(ctx, mux, conn)
 }
 
-// RegisterYourServiceHandler registers the http handlers for service YourService to "mux".
+// RegisterEchoServiceHandler registers the http handlers for service EchoService to "mux".
 // The handlers forward requests to the grpc endpoint over "conn".
-func RegisterYourServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
-	client := NewYourServiceClient(conn)
+func RegisterEchoServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn *grpc.ClientConn) error {
+	client := NewEchoServiceClient(conn)
 
-	mux.Handle("POST", pattern_YourService_Echo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("POST", pattern_EchoService_Echo_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(ctx)
 		closeNotifier, ok := w.(http.CloseNotifier)
 		if ok {
@@ -78,13 +78,13 @@ func RegisterYourServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn
 				cancel()
 			}()
 		}
-		resp, err := request_YourService_Echo_0(runtime.AnnotateContext(ctx, req), client, req, pathParams)
+		resp, err := request_EchoService_Echo_0(runtime.AnnotateContext(ctx, req), client, req, pathParams)
 		if err != nil {
 			runtime.HTTPError(ctx, w, req, err)
 			return
 		}
 
-		forward_YourService_Echo_0(ctx, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_EchoService_Echo_0(ctx, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -92,9 +92,9 @@ func RegisterYourServiceHandler(ctx context.Context, mux *runtime.ServeMux, conn
 }
 
 var (
-	pattern_YourService_Echo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2}, []string{"v1", "example", "echo"}, ""))
+	pattern_EchoService_Echo_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1}, []string{"v1", "echo"}, ""))
 )
 
 var (
-	forward_YourService_Echo_0 = runtime.ForwardResponseMessage
+	forward_EchoService_Echo_0 = runtime.ForwardResponseMessage
 )

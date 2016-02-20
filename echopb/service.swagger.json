@@ -15,15 +15,15 @@
     "application/json"
   ],
   "paths": {
-    "/v1/example/echo": {
+    "/v1/echo": {
       "post": {
-        "summary": "YourService.Echo",
+        "summary": "EchoService.Echo",
         "operationId": "Echo",
         "responses": {
           "default": {
             "description": "Description",
             "schema": {
-              "$ref": "#/definitions/playStringMessage"
+              "$ref": "#/definitions/echopbEchoMessage"
             }
           }
         },
@@ -33,18 +33,18 @@
             "in": "body",
             "required": true,
             "schema": {
-              "$ref": "#/definitions/playStringMessage"
+              "$ref": "#/definitions/echopbEchoMessage"
             }
           }
         ],
         "tags": [
-          "YourService"
+          "EchoService"
         ]
       }
     }
   },
   "definitions": {
-    "playStringMessage": {
+    "echopbEchoMessage": {
       "properties": {
         "value": {
           "type": "string",

@@ -1,16 +1,16 @@
 syntax = "proto3";
-package play;
+package echopb;
 
 import "google/api/annotations.proto";
 
-message StringMessage {
+message EchoMessage {
  string value = 1;
 }
 
-service YourService {
-  rpc Echo(StringMessage) returns (StringMessage) {
+service EchoService {
+  rpc Echo(EchoMessage) returns (EchoMessage) {
     option (google.api.http) = {
-      post: "/v1/example/echo"
+      post: "/v1/echo"
       body: "*"
     };
   }

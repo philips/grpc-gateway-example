@@ -1,0 +1,61 @@
+package echopb 
+
+const (
+swagger = `{
+  "swagger": "2.0",
+  "info": {
+    "version": "",
+    "title": ""
+  },
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/v1/echo": {
+      "post": {
+        "summary": "EchoService.Echo",
+        "operationId": "Echo",
+        "responses": {
+          "default": {
+            "description": "Description",
+            "schema": {
+              "$ref": "#/definitions/echopbEchoMessage"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/echopbEchoMessage"
+            }
+          }
+        ],
+        "tags": [
+          "EchoService"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "echopbEchoMessage": {
+      "properties": {
+        "value": {
+          "type": "string",
+          "format": "string"
+        }
+      }
+    }
+  }
+}
+`
+)

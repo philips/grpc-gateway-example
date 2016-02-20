@@ -24,7 +24,7 @@ import (
 	"google.golang.org/grpc/credentials"
 	"google.golang.org/grpc/grpclog"
 
-	pb "github.com/philips/hacks/grpc-play/proto"
+	pb "github.com/philips/grpc-gateway-example/echopb"
 )
 
 // echoCmd represents the echo command
@@ -46,9 +46,9 @@ to quickly create a Cobra application.`,
 			grpclog.Fatalf("fail to dial: %v", err)
 		}
 		defer conn.Close()
-		client := pb.NewYourServiceClient(conn)
+		client := pb.NewEchoServiceClient(conn)
 
-		msg, err := client.Echo(context.Background(), &pb.StringMessage{strings.Join(os.Args[2:], " ")})
+		msg, err := client.Echo(context.Background(), &pb.EchoMessage{strings.Join(os.Args[2:], " ")})
 		println(msg.Value)
 
 	},
