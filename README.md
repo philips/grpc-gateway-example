@@ -1,6 +1,6 @@
 ## gRPC + REST Gateway Play
 
-This runs a simple gRPC service on port 10000 and a REST interface to this gRPC endpoint on port 8080.
+Blog post: https://coreos.com/blog/gRPC-protobufs-swagger.html
 
 To try it all out do this:
 
