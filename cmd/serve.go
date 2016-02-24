@@ -5,11 +5,15 @@ import (
 	"fmt"
 	"io"
 	"log"
+	"mime"
 	"net"
 	"net/http"
 	"strings"
 
+	"github.com/philips/grpc-gateway-example/pkg/ui/data/swagger"
+
 	"github.com/gengo/grpc-gateway/runtime"
+	"github.com/philips/go-bindata-assetfs"
 	"github.com/spf13/cobra"
 	"golang.org/x/net/context"
 	"golang.org/x/net/http2"
@@ -63,6 +67,19 @@ func grpcHandlerFunc(grpcServer *grpc.Server, otherHandler http.Handler) http.Ha
 	})
 }
 
+func serveSwagger(mux *http.ServeMux) {
+	mime.AddExtensionType(".svg", "image/svg+xml")
+
+	// Expose files in third_party/swagger-ui/ on <host>/swagger-ui
+	fileServer := http.FileServer(&assetfs.AssetFS{
+		Asset:    swagger.Asset,
+		AssetDir: swagger.AssetDir,
+		Prefix:   "third_party/swagger-ui",
+	})
+	prefix := "/swagger-ui/"
+	mux.Handle(prefix, http.StripPrefix(prefix, fileServer))
+}
+
 func serve() {
 	opts := []grpc.ServerOption{
 		grpc.Creds(credentials.NewClientTLSFromCert(demoCertPool, "localhost:10000"))}
@@ -90,6 +107,7 @@ func serve() {
 	}
 
 	mux.Handle("/", gwmux)
+	serveSwagger(mux)
 
 	conn, err := net.Listen("tcp", fmt.Sprintf(":%d", port))
 	if err != nil {
