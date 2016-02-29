@@ -116,8 +116,6 @@ func serve() {
 		},
 	}
 
-	http2.ConfigureServer(srv, nil)
-
 	fmt.Printf("grpc on port: %d\n", port)
 	err = srv.Serve(tls.NewListener(conn, srv.TLSConfig))
 
