@@ -16,7 +16,6 @@ import (
 	"github.com/philips/go-bindata-assetfs"
 	"github.com/spf13/cobra"
 	"golang.org/x/net/context"
-	"golang.org/x/net/http2"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials"
 
