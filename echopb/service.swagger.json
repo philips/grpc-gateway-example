@@ -1,8 +1,8 @@
 {
   "swagger": "2.0",
   "info": {
-    "version": "",
-    "title": ""
+    "title": "service.proto",
+    "version": "version not set"
   },
   "schemes": [
     "http",
@@ -17,10 +17,9 @@
   "paths": {
     "/v1/echo": {
       "post": {
-        "summary": "EchoService.Echo",
         "operationId": "Echo",
         "responses": {
-          "default": {
+          "200": {
             "description": "Description",
             "schema": {
               "$ref": "#/definitions/echopbEchoMessage"

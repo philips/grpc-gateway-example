@@ -48,6 +48,7 @@ swagger = `{
   },
   "definitions": {
     "echopbEchoMessage": {
+      "type": "object",
       "properties": {
         "value": {
           "type": "string",
