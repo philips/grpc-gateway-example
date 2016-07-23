@@ -12,7 +12,7 @@ import (
 
 	"github.com/philips/grpc-gateway-example/pkg/ui/data/swagger"
 
-	"github.com/gengo/grpc-gateway/runtime"
+	"github.com/grpc-ecosystem/grpc-gateway/runtime"
 	"github.com/philips/go-bindata-assetfs"
 	"github.com/spf13/cobra"
 	"golang.org/x/net/context"

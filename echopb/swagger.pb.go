@@ -4,8 +4,8 @@ const (
 swagger = `{
   "swagger": "2.0",
   "info": {
-    "version": "",
-    "title": ""
+    "title": "service.proto",
+    "version": "version not set"
   },
   "schemes": [
     "http",
@@ -20,11 +20,10 @@ swagger = `{
   "paths": {
     "/v1/echo": {
       "post": {
-        "summary": "EchoService.Echo",
         "operationId": "Echo",
         "responses": {
-          "default": {
-            "description": "Description",
+          "200": {
+            "description": "",
             "schema": {
               "$ref": "#/definitions/echopbEchoMessage"
             }
