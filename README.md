@@ -16,4 +16,4 @@ $ curl -X POST -k https://localhost:10000/v1/echo -H "Content-Type: text/plain" 
 Huge thanks to the hard work people have put into the [Go gRPC bindings][gogrpc] and [gRPC to JSON Gateway][grpcgateway]
 
 [gogrpc]: https://github.com/grpc/grpc-go
-[grpcgateway]: https://github.com/gengo/grpc-gateway
+[grpcgateway]: https://github.com/grpc-ecosystem/grpc-gateway
