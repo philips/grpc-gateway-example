@@ -112,6 +112,7 @@ func serve() {
 		Handler: grpcHandlerFunc(grpcServer, mux),
 		TLSConfig: &tls.Config{
 			Certificates: []tls.Certificate{*demoKeyPair},
+			NextProtos:   []string{"h2"},
 		},
 	}
 
