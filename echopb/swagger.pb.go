@@ -50,8 +50,7 @@ swagger = `{
       "type": "object",
       "properties": {
         "value": {
-          "type": "string",
-          "format": "string"
+          "type": "string"
         }
       }
     }
